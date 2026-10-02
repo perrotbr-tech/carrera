@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#142339">
+<meta name="description" content="Tres preguntas y tu tarjeta de compromiso. 1 Corintios 9:24-27.">
+<title>La Carrera Que Vale La Pena | Tu compromiso</title>
+<style>
+:root{
+  --navy:#142339; --blue:#2A5C8C; --gold:#C49437; --cream:#F8F6F0;
+  --page:#E7E2D6; --bg:#F8F6F0; --surface:#FFFFFF; --ink:#142339; --muted:#4D5B73;
+  --line:rgba(20,35,57,.14); --panel:#142339; --panel-line:transparent; --chip:#142339; --chip-line:transparent;
+  --font:Aptos,"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --page:#050B14; --bg:#0B1524; --surface:#142339; --ink:#F8F6F0; --muted:#A9B5C7;
+    --line:rgba(248,246,240,.16); --panel:#070F1B; --panel-line:rgba(248,246,240,.16);
+    --chip:#070F1B; --chip-line:rgba(196,148,55,.6);
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font:400 17px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+h1,h2,p,ol{margin:0}
+ol{padding:0;list-style:none}
+button,textarea{font:inherit;color:inherit}
+html:not(.js) .js-only{display:none !important}
+.app{max-width:480px;margin:0 auto;background:var(--bg);min-height:100vh;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+
+.top{background:var(--navy);color:var(--cream);padding:calc(22px + env(safe-area-inset-top,0px)) 20px 22px;border-bottom:4px solid var(--gold)}
+.top h1{font-size:clamp(24px,7.4vw,30px);line-height:1.08;font-weight:800;letter-spacing:-.025em}
+.top p{margin-top:6px;font-size:15px;font-weight:600;color:#E3C27C}
+
+.sec{padding:30px 20px 6px}
+.sec h2{font-size:25px;line-height:1.12;font-weight:800;letter-spacing:-.02em}
+
+.three{margin-top:16px;padding:6px 18px 22px;border-radius:18px;background:var(--panel);border:1px solid var(--panel-line);color:var(--cream)}
+.three li{display:flex;gap:12px;align-items:flex-start;margin-top:16px;font-size:19px;line-height:1.3;font-weight:600}
+.three b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-size:16px}
+.three span{display:block;margin-top:3px;font-size:14px;font-weight:600;color:#E3C27C}
+
+.card{margin-top:16px;padding:6px 16px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--line);border-top:6px solid var(--gold)}
+.field{margin-top:18px}
+.field label{display:flex;gap:10px;align-items:flex-start;font-weight:700;line-height:1.35}
+.field label b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--chip);border:1.5px solid var(--chip-line);color:var(--gold);display:grid;place-items:center;font-size:14px}
+.field small{display:block;margin:4px 0 0 36px;font-size:14.5px;color:var(--muted)}
+.field textarea{display:block;width:100%;margin-top:8px;padding:12px 14px;min-height:76px;resize:vertical;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);font-size:17px;line-height:1.4}
+.field textarea:focus{outline:3px solid var(--gold);outline-offset:1px;border-color:transparent}
+
+.btn{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;min-height:56px;margin-top:16px;padding:12px 20px;border-radius:14px;border:0;
+  background:var(--gold);color:var(--navy);font-weight:700;font-size:18px;line-height:1.2;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hint{margin-top:10px;font-size:14.5px;color:var(--muted);text-align:center}
+
+.foot{margin-top:28px;padding:20px 20px 26px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted)}
+.toast{position:fixed;z-index:40;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translate(-50%,10px);
+  width:max-content;max-width:calc(100vw - 40px);padding:12px 16px;border-radius:12px;background:var(--navy);color:var(--cream);border:1px solid rgba(248,246,240,.22);
+  font-size:15px;font-weight:700;text-align:center;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s,visibility .18s}
+.toast.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}.btn:active{transform:none}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header class="top">
+  <h1>La Carrera Que Vale La Pena</h1>
+  <p>1 Corintios 9:24-27</p>
+</header>
+
+<main>
+  <section class="sec">
+    <h2>Tres preguntas para ti</h2>
+    <ol class="three">
+      <li><b aria-hidden="true">1</b><div>¿Estás corriendo en serio o solo te mueves?<span>Disciplina</span></div></li>
+      <li><b aria-hidden="true">2</b><div>¿Hacia dónde corres?<span>Propósito</span></div></li>
+      <li><b aria-hidden="true">3</b><div>¿Corres hasta el fin, aunque duela?<span>Perseverancia</span></div></li>
+    </ol>
+  </section>
+
+  <section class="sec">
+    <h2>Mi compromiso</h2>
+    <div class="card" id="card">
+      <div class="field">
+        <label for="c1"><b aria-hidden="true">1</b><span>1 obstáculo que voy a quitar esta semana.</span></label>
+        <textarea id="c1" rows="2" maxlength="300" data-q="1 obstáculo que voy a quitar esta semana"></textarea>
+      </div>
+      <div class="field">
+        <label for="c2"><b aria-hidden="true">2</b><span>1 disciplina que voy a empezar.</span></label>
+        <small id="c2h">ej: 10 min de Biblia al día, orar antes de dormir</small>
+        <textarea id="c2" rows="2" maxlength="300" aria-describedby="c2h" data-q="1 disciplina que voy a empezar"></textarea>
+      </div>
+      <div class="field">
+        <label for="c3"><b aria-hidden="true">3</b><span>1 persona a quien le contaré mi compromiso.</span></label>
+        <small id="c3h">para rendir cuentas</small>
+        <textarea id="c3" rows="2" maxlength="300" aria-describedby="c3h" data-q="1 persona a quien le contaré mi compromiso"></textarea>
+      </div>
+    </div>
+    <button class="btn js-only" type="button" id="send">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg><span id="sendLbl">Compartir mi compromiso</span>
+    </button>
+    <p class="hint">Lo que escribes queda solo en tu celular.</p>
+  </section>
+</main>
+
+<footer class="foot">Basado en 1 Corintios 9 | Solo para uso ministerial</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  var d = document;
+  d.documentElement.classList.add('js');
+  var fields = Array.prototype.slice.call(d.querySelectorAll('#card textarea'));
+  var btn = d.getElementById('send'), lbl = d.getElementById('sendLbl'), toastEl = d.getElementById('toast'), toastT;
+  var canShare = typeof navigator.share === 'function';
+  if (!canShare) { lbl.textContent = 'Copiar mi compromiso'; }
+
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { toastEl.classList.remove('on'); }, 2600);
+  }
+  function legacyCopy(text) {
+    var ta = d.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';
+    d.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { ta.setSelectionRange(0, text.length); } catch (e) {}
+    var ok = false;
+    try { ok = d.execCommand('copy'); } catch (e) {}
+    d.body.removeChild(ta);
+    return ok;
+  }
+  function copy(text) {
+    function done(ok) { toast(ok ? 'Compromiso copiado' : 'No se pudo copiar. Mantén presionado el texto para copiarlo.'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(legacyCopy(text)); });
+    } else { done(legacyCopy(text)); }
+  }
+  btn.addEventListener('click', function () {
+    var vals = fields.map(function (f) { return f.value.replace(/\s+/g, ' ').trim(); });
+    if (!vals.some(Boolean)) {
+      toast('Escribe tu compromiso antes de compartirlo');
+      fields[0].focus();
+      return;
+    }
+    var lines = ['Mi compromiso (1 Corintios 9:24-27)'];
+    fields.forEach(function (f, i) { lines.push('• ' + f.getAttribute('data-q') + ': ' + (vals[i] || '—')); });
+    var text = lines.join('\n');
+    if (canShare) {
+      navigator.share({ text: text }).catch(function (err) {
+        if (!err || err.name !== 'AbortError') { copy(text); }
+      });
+    } else { copy(text); }
+  });
+})();
+</script>
+</body>
+</html>
